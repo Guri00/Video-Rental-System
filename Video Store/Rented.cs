@@ -4,7 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Windows;
 
-namespace Video_Store6
+namespace Video_Store
 {
     class Rented
     {

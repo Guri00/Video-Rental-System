@@ -1,18 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using Video_Store6;
 
 namespace Video_Store
 {
@@ -21,10 +11,10 @@ namespace Video_Store
     /// </summary>
     public partial class Main : Window
     {
-        Customer  Obj_Customer = new Customer() ;
+        Customer Obj_Customer = new Customer();
         Movies Obj_Movies = new Movies();
         Rented Obj_Rented = new Rented();
-        
+
 
         public int CustID;
         public int MovieID;
@@ -39,12 +29,12 @@ namespace Video_Store
         {
             if (First_txt.Text != "" && Last_txt.Text != "" && Address_txt.Text != "" && Phone_txt.Text != "")
             {
-               string FirstName = First_txt.Text;
-               string LastName = Last_txt.Text;
-               string Address = Address_txt.Text;
-               string Phone = Phone_txt.Text;
-               int CustID = Convert.ToInt32(Customerid_txt.Text);
-               Obj_Customer.UpdateCustomer(CustID , FirstName, LastName, Address, Phone);//this code passes the variable to UpdateCustomer Method in Register Class
+                string FirstName = First_txt.Text;
+                string LastName = Last_txt.Text;
+                string Address = Address_txt.Text;
+                string Phone = Phone_txt.Text;
+                int CustID = Convert.ToInt32(Customerid_txt.Text);
+                Obj_Customer.UpdateCustomer(CustID, FirstName, LastName, Address, Phone);//this code passes the variable to UpdateCustomer Method in Register Class
                 Video_data.ItemsSource = Obj_Movies.ListMovies().DefaultView;
                 Rental_data.ItemsSource = Obj_Rented.ListRented().DefaultView;
                 Customer_data.ItemsSource = Obj_Customer.Listcustomer().DefaultView;
@@ -64,18 +54,18 @@ namespace Video_Store
             }
             else
             {
-                
-                    MessageBox.Show("Please Fill all the Details");
-                
+
+                MessageBox.Show("Please Fill all the Details");
+
             }
         }
 
         private void Add_btn_Click(object sender, RoutedEventArgs e)
         {
-            
+
             if (First_txt.Text != "" && Last_txt.Text != "" && Address_txt.Text != "" && Phone_txt.Text != "")
             {
-                Obj_Customer.AddCustomer( First_txt.Text, Last_txt.Text, Address_txt.Text, Phone_txt.Text);//this code passes the variable to Addcustomer method in Customer Class
+                Obj_Customer.AddCustomer(First_txt.Text, Last_txt.Text, Address_txt.Text, Phone_txt.Text);//this code passes the variable to Addcustomer method in Customer Class
 
                 Video_data.ItemsSource = Obj_Movies.ListMovies().DefaultView;
                 Rental_data.ItemsSource = Obj_Rented.ListRented().DefaultView;
@@ -106,38 +96,38 @@ namespace Video_Store
         private void Deletecustomer_Copy_Click(object sender, RoutedEventArgs e)
         {
             if (Customerid_txt.Text != "")
-            { 
-            int CustID = Convert.ToInt32(Customerid_txt.Text);
-            MessageBoxResult dialogResult = MessageBox.Show("Are Your Sure You want To Delete This Customer ?",
-                   "Customer", MessageBoxButton.YesNo);
-            if (dialogResult.ToString() == "Yes")
             {
-                Obj_Customer.DeleteCustomer(CustID);//this code passes the variable to DeleteCustomer method in Customer Class
+                int CustID = Convert.ToInt32(Customerid_txt.Text);
+                MessageBoxResult dialogResult = MessageBox.Show("Are Your Sure You want To Delete This Customer ?",
+                       "Customer", MessageBoxButton.YesNo);
+                if (dialogResult.ToString() == "Yes")
+                {
+                    Obj_Customer.DeleteCustomer(CustID);//this code passes the variable to DeleteCustomer method in Customer Class
 
                     MessageBox.Show("Customer Deleted");
-                Video_data.ItemsSource = Obj_Movies.ListMovies().DefaultView;
-                Rental_data.ItemsSource = Obj_Rented.ListRented().DefaultView;
-                Customer_data.ItemsSource = Obj_Customer.Listcustomer().DefaultView;
-                Movieid_txt.Text = "";
-                Customerid_txt.Text = "";
-                Title_txt.Text = "";
-                Plot_txt.Text = "";
-                Genre_txt.Text = "";
-                Year_tx.Text = "";
-                Rating_txt.Text = "";
-                Movieid_txt.Text = "";
-                copies_txt.Text = "";
-                First_txt.Text = "";
-                Last_txt.Text = "";
-                Address_txt.Text = "";
-                Phone_txt.Text = "";
+                    Video_data.ItemsSource = Obj_Movies.ListMovies().DefaultView;
+                    Rental_data.ItemsSource = Obj_Rented.ListRented().DefaultView;
+                    Customer_data.ItemsSource = Obj_Customer.Listcustomer().DefaultView;
+                    Movieid_txt.Text = "";
+                    Customerid_txt.Text = "";
+                    Title_txt.Text = "";
+                    Plot_txt.Text = "";
+                    Genre_txt.Text = "";
+                    Year_tx.Text = "";
+                    Rating_txt.Text = "";
+                    Movieid_txt.Text = "";
+                    copies_txt.Text = "";
+                    First_txt.Text = "";
+                    Last_txt.Text = "";
+                    Address_txt.Text = "";
+                    Phone_txt.Text = "";
+                }
             }
-          }
             else
             {
                 MessageBox.Show("First select The Customer Your Wish To Delete ");
             }
-    }
+        }
 
         private void Customer_load(object sender, RoutedEventArgs e)
         {
@@ -158,8 +148,8 @@ namespace Video_Store
 
         private void AddMovies_Click(object sender, RoutedEventArgs e)
         {
-            
-            if (Rating_txt.Text != "" && Title_txt.Text != "" && Year_tx.Text != "" &&  Plot_txt.Text != "" && Genre_txt.Text != "" && copies_txt.Text != "")
+
+            if (Rating_txt.Text != "" && Title_txt.Text != "" && Year_tx.Text != "" && Plot_txt.Text != "" && Genre_txt.Text != "" && copies_txt.Text != "")
             {
                 int Mov_year = Convert.ToInt32(Year_tx.Text);//this code is used to put the value of year text box to varibles so we can calculate the rent
                 int copies = Convert.ToInt32(copies_txt.Text);
@@ -167,7 +157,7 @@ namespace Video_Store
                 if (2018 - Mov_year > 5)//this if statement checks if the movie is older that five years
                 {
                     rent = "2";//if the move is older that 5 year then rent is 2
-                        
+
                 }
                 else
                 {
@@ -249,14 +239,14 @@ namespace Video_Store
             if (Movieid_txt.Text != "")
             {
 
-                
+
 
 
                 MessageBoxResult dialogResult = MessageBox.Show("Are Your Sure You want To Delete This Movie ?",
                     "movie", MessageBoxButton.YesNo);
                 if (dialogResult.ToString() == "Yes")
                 {
-                     int movie = Convert.ToInt32(Movieid_txt.Text);
+                    int movie = Convert.ToInt32(Movieid_txt.Text);
                     Obj_Movies.DeleteMovie(movie);//this code passes the variable to DeleteMovie in Movie Class
 
                     Video_data.ItemsSource = Obj_Movies.ListMovies().DefaultView;
@@ -292,7 +282,7 @@ namespace Video_Store
 
         private void Video_loaded(object sender, RoutedEventArgs e)
         {
-           Video_data.ItemsSource = Obj_Movies.ListMovies().DefaultView;
+            Video_data.ItemsSource = Obj_Movies.ListMovies().DefaultView;
         }
 
         private void SelectMovieRow_Edit(object sender, MouseButtonEventArgs e)
@@ -309,9 +299,9 @@ namespace Video_Store
             Video_data.ItemsSource = Obj_Movies.ListMovies().DefaultView;
         }
 
-       
 
-        
+
+
 
         private void Returned_Click(object sender, RoutedEventArgs e)
         {
@@ -413,7 +403,7 @@ namespace Video_Store
             }
         }
 
-        
+
 
         private void SlectRented(object sender, MouseButtonEventArgs e)
         { //below code is used to put data from DataGrid in Textbox
@@ -426,7 +416,7 @@ namespace Video_Store
 
 
 
-            Rental_data.ItemsSource = Obj_Rented .ListRented().DefaultView;
+            Rental_data.ItemsSource = Obj_Rented.ListRented().DefaultView;
         }
 
         private void video_load(object sender, RoutedEventArgs e)
@@ -442,8 +432,8 @@ namespace Video_Store
 
         private void Return_Click(object sender, RoutedEventArgs e)
         {
-            if(Rmid_txt.Text != "")
-            { 
+            if (Rmid_txt.Text != "")
+            {
                 int RMID = Convert.ToInt32(Rmid_txt.Text);
                 dateretuned_txt.Text = DateTime.Today.ToString("dd-MM-yyyy");
                 int MovieID = Convert.ToInt32(Movieid_txt.Text);
